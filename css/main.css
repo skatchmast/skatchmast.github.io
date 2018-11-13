@@ -1,6 +1,64 @@
+#button,
+#form,
 #wrap,
 html,
 body {
     margin: 0;
     padding: 0;
+    z-index: 0;
+}
+
+.centred {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+#form button[type="submit"] {
+
+}
+
+#form button[type="submit"].active {
+
+    background: red;
+}
+
+.valid {
+    background: #28a745 !important;
+}
+
+.novalid {
+    background: #dc3545 !important;
+}
+
+#name,
+#phone,
+#email,
+#form button[type="submit"] {
+    transition: all .6s ease-out;
+}
+
+.user-info {
+    border-radius: 7px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: none;
+    background: #28a745;
+}
+
+.user-info.active {
+    display: block;
+}
+
+.user-info ul {
+    padding-left: 0;
+    margin: 22px 78px;
+    line-height: 27px;
+}
+
+.user-info ul li {
+    list-style-type: none;
 }

@@ -19,13 +19,281 @@
 
 <div id="wrap">
 
-    <div class="container">
-            <div class="row">
-                <button type="button" class="btn btn-success">Success</button>
-            </div>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary centred" data-toggle="modal" data-target="#exampleModalCenter">
+        create account
+    </button>
+
+    <!-- User info -->
+    <div class="user-info">
+        <ul>
+            <li>wewe</li>
+            <li>wewew</li>
+            <li>wewe</li>
+        </ul>
     </div>
 
-</div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <!-- form -->
+                    <form id="form" class="needs-validation">
+                        <div class="form-group">
+                            <label for="name">name</label>
+                            <input type="text" class="form-control" id="name" aria-describedby="emailHelp"
+                                   placeholder="Enter name">
+                            <small id="emailHelp" class="form-text text-muted">what is your name</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">phone</label>
+                            <input type="number" class="form-control" id="phone" aria-describedby="emailHelp"
+                                   placeholder="Enter phone">
+                            <small id="emailHelp" class="form-text text-muted">what is phone number</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                                   placeholder="Enter email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+
+                        <button type="submit" class="btn btn-sm">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div> <!-- #wrap -->
+
+<!-- scripts include -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>-->
+
+<script>
+    /* function helpers */
+    var cl = console.log;
+	/******************************************/
+
+
+
+	/* Open form */
+	$('button[data-target]').on( 'click' ,function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+
+		let modalShow = (function(){
+			$('#exampleModalCenter').modal('show');
+		});
+
+		setTimeout( modalShow ,5 );
+
+	});
+	/******************************************/
+
+
+
+    /* validation of the form */
+	var nameValid   = false;
+	var phoneValid  = false;
+	var emailValid  = false;
+
+	var nameText    = "";
+	var phoneText   = "";
+	var emailText   = "";
+
+
+	function clean() {
+		$('#name').val("").removeClass('valid');
+		$('#phone').val("").removeClass('valid');
+		$('#email').val("").removeClass('valid');
+		$('#form button[type="submit"]').off( 'click');
+		$('#form button[type="submit"]').on( 'click' ,function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+        });
+		$('#form button[type="submit"]').removeClass('valid');
+		nameValid   = false;
+		phoneValid  = false;
+		emailValid  = false;
+
+		$('.user-info').removeClass('active');
+		nameText    = "";
+		phoneText   = "";
+		emailText   = "";
+
+		toleranceValid();
+	}
+
+
+	function toleranceValid() {
+		if ( nameValid && phoneValid && emailValid ) {
+			$('#form button[type="submit"]').addClass('valid');
+			$('#form button[type="submit"]').off('click');
+			$('button[data-target]').off( 'click');
+
+			/* submit */
+			$('#form button[type="submit"]').on('click' ,function ( e ) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				$('.user-info ul li:eq(0)').text( nameText );
+				$('.user-info ul li:eq(1)').text( phoneText );
+				$('.user-info ul li:eq(2)').text( emailText );
+				$('.user-info').addClass('active');
+
+				$('#exampleModalCenter').modal('hide');
+				$('button[data-target]').text('clean');
+
+				$('button[data-target]').on( 'click' ,function(e) {
+					e.preventDefault();
+					e.stopPropagation();
+
+					clean();
+
+					$('button[data-target]').text('create account')
+
+                    $('button[data-target]').on( 'click' ,function(e) {
+						e.preventDefault();
+						e.stopPropagation();
+
+						let modalShow = (function(){
+							$('#exampleModalCenter').modal('show');
+						});
+
+						setTimeout( modalShow ,5 );
+
+					});
+    			});
+
+			});
+
+		}else {
+			$('#form button[type="submit"]').on('click' ,function ( e ) {
+				e.preventDefault();
+				e.stopPropagation();
+			});
+
+			$('#form button[type="submit"]').removeClass('valid');
+		}
+    }
+
+
+	 function isValid ( __bindEvent ) {
+
+		 var val  = $(__bindEvent.target).val();
+		 var el     = $(__bindEvent.target);
+
+		 if ( val != '' ) {
+			 if ( val.match( __bindEvent.pattern ) ) {
+				 __bindEvent.isValidate   = true;
+				 el.addClass('valid');
+				 el.removeClass('novalid');
+				 // cl(__bindEvent.isValidate);
+			 } else {
+				 __bindEvent.isValidate   = false;
+				 el.addClass('novalid');
+				 el.removeClass('valid');
+				 // cl(__bindEvent.isValidate)
+			 }
+         } else {
+			 el.removeClass('valid');
+			 el.removeClass('novalid');
+         }
+
+     }
+
+
+	$('#name').on('keyup' ,function ( e ) {
+		e.pattern = /^[a-zA-Z\-]+$/;
+		e.isValidate = false;
+		isValid( e );
+		nameValid =  e.isValidate;
+		toleranceValid();
+		nameText = $(this).val();
+	});
+	$('#name').change(function(e){
+		e.pattern = /^[a-zA-Z\-]+$/;
+		e.isValidate = false;
+		nameText = $(this).val();
+		isValid( e );
+		toleranceValid();
+	});
+
+
+
+	$('#phone').on('keyup' ,function ( e ) {
+		e.pattern = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
+		e.isValidate = false;
+		isValid( e );
+		phoneValid =  e.isValidate;
+		toleranceValid();
+		phoneText = $(this).val();
+	});
+	$('#phone').change(function(e){
+		e.pattern = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
+		e.isValidate = false;
+		cl($(this).val());
+		isValid( e );
+		toleranceValid();
+		phoneText = $(this).val();
+	});
+
+
+
+	$('#email').on('keyup' ,function ( e ) {
+		e.pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		e.isValidate = false;
+		isValid( e );
+		emailValid =  e.isValidate;
+		toleranceValid();
+		emailText = $(this).val();
+	});
+	$('#email').change(function(e){
+		e.pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		e.isValidate = false;
+		cl($(this).val());
+		isValid( e );
+		toleranceValid();
+		emailText = $(this).val();
+	});
+
+
+	$('#form button[type="submit"]').on('click' ,function ( e ) {
+		e.preventDefault();
+		e.stopPropagation();
+		toleranceValid();
+	});
+	/******************************************/
+
+
+
+
+	/* data output */
+
+
+
+
+    // $(document).on('change' ,function ( e ) {
+     //    cl( e.type )
+	// } )
+
+</script>
 
 </body>
 </html>
