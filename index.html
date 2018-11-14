@@ -120,9 +120,12 @@
 		var nameText    = "";
 		var phoneText   = "";
 		var emailText   = "";
+		/******************************************/
+
+		
 
 
-		function clean() {
+        function clean() {
 			$('#name').val("").removeClass('valid');
 			$('#phone').val("").removeClass('valid');
 			$('#email').val("").removeClass('valid');
@@ -221,8 +224,11 @@
 			}
 
 		}
+		/******************************************/
 
 
+
+		/* Events Forms */
 		$('#name').bind('keyup keydown keypress focus change' ,function ( e ) {
 			e.pattern = /^[a-zA-Z\-]+$/;
 			e.isValidate = false;
@@ -231,7 +237,6 @@
 			toleranceValid();
 			nameText = $(this).val();
 		});
-
 
 
 		$('#phone').bind('keyup keydown keypress focus change' ,function ( e ) {
@@ -244,7 +249,6 @@
 		});
 
 
-
 		$('#email').bind('keyup keydown keypress focus change' ,function ( e ) {
 			e.pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			e.isValidate = false;
@@ -253,8 +257,11 @@
 			toleranceValid();
 			emailText = $(this).val();
 		});
+		/******************************************/
 
 
+
+		/* Events Forms */
 		$('#form button[type="submit"]').on('click' ,function ( e ) {
 			e.preventDefault();
 			e.stopPropagation();
