@@ -23,7 +23,7 @@ $(document).ready(function(){
 	
 	
 	
-	/* validation of the form */
+	/* Variable of the form */
 	var
 		nameValid   = false,
 		phoneValid  = false,
