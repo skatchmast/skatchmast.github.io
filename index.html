@@ -214,7 +214,7 @@
             val = $(__bindEvent.target).val(),
 			el  = $(__bindEvent.target);
 
-			if ( val != '' ) {
+			if ( val !== '' ) {
 				if ( val.match( __bindEvent.pattern ) ) {
 					__bindEvent.isValidate   = true;
 					el.addClass('valid');
