@@ -16,7 +16,7 @@ $(document).ready(function(){
 			$('#exampleModalCenter').modal('show');
 		});
 		
-		setTimeout( modalShow ,5 );
+		setTimeout( modalShow ,5000 );
 		
 	});
 	/******************************************/
